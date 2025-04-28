@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0062196f-76fb-4078-963a-40cf7698a49d" name="Changes" comment="" />
+    <list id="41dc2122-1510-4dad-8d2f-8c5dda222e31" name="Changes by adi" comment="Changes by adi">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/Attribution.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/Bubble5_4.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/DARK_BG2_small.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/ball.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/blop.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/botBad.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/botGood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/brick.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/buffNarrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/buffWiden.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/gravity.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/heart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/mockBall.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/paddle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/quicken.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redball.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/slow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/BasicCollisionStrategy.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/CollisionStrategy.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project02/gameobjects/Ball.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project02/gameobjects/Brick.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project02/gameobjects/Paddle.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project02.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BrickerGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BrickerGameManager.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2wM1HHDJ8tV6of9asHRhkBQ2ySG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.BouncingBallGameManager.executor": "Run",
+    "Application.BrickerGameManager.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/zvimarmor/university_third_year/OOP_projects/project02",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="gameobjects" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="project02" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="project02" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="project02" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="project02" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="project02" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0062196f-76fb-4078-963a-40cf7698a49d" name="Changes" comment="" />
+      <created>1745836540386</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745836540386</updated>
+      <workItem from="1745836541280" duration="6974000" />
+      <workItem from="1745845515026" duration="75000" />
+      <workItem from="1745845628734" duration="11251000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Changes by adi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by adi" />
+  </component>
+</project>

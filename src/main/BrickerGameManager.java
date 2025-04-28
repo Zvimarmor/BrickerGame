@@ -99,9 +99,9 @@ public class BrickerGameManager extends GameManager {
 				new Vector2(windowDimensions.x(), BORDER_WIDTH),
 				null);
 		gameObjects().addGameObject(topBoundary,Layer.STATIC_OBJECTS);
-		// ---------------------------------------------------------------
 
-		//Create Bricks
+		//-------------------- Create Bricks --------------------------
+		// todo - loop to create all the Bricks
 		//int index_rows = windowDimensions.x() / rowNum;
 		CollisionStrategy collisionStrategy = new BasicCollisionStrategy(gameObjects());
 		Renderable brickImage =
