@@ -16,10 +16,10 @@ import gameobjects.Paddle;
 import java.util.Random;
 
 public class BrickerGameManager extends GameManager {
-	int  BORDER_WIDTH = 3;
-	float BALL_SPEED = 250;
-	int rowNum;
-	int colNum;
+	private int  BORDER_WIDTH = 3;
+	private float BALL_SPEED = 250;
+	private int rowNum;
+	private int colNum;
 	// todo check
 	public BrickerGameManager(String windowTitle, Vector2 windowDimensions,int rowNum,int colNum) {
 		super(windowTitle, windowDimensions);
@@ -101,14 +101,38 @@ public class BrickerGameManager extends GameManager {
 		gameObjects().addGameObject(topBoundary,Layer.STATIC_OBJECTS);
 
 		//-------------------- Create Bricks --------------------------
-		// todo - loop to create all the Bricks
-		//int index_rows = windowDimensions.x() / rowNum;
+		// Create all Bricks with calculated spacing
 		CollisionStrategy collisionStrategy = new BasicCollisionStrategy(gameObjects());
-		Renderable brickImage =
-				imageReader.readImage("assets/brick.png",false);
-		Brick brick = new Brick(new Vector2(0,0),new Vector2(windowDimensions.x(),15)
-				,brickImage,collisionStrategy);
-		gameObjects().addGameObject(brick, Layer.STATIC_OBJECTS);
+		Renderable brickImage = imageReader.readImage("assets/brick.png", false);
+
+		float spacing = 5; // space between bricks
+		float brickHeight = 15;
+
+		// Available width for bricks (excluding left and right borders)
+		float availableWidth = windowDimensions.x() - 2 * BORDER_WIDTH;
+		// Width of each brick, considering spacing between columns
+		float brickWidth = (availableWidth - (colNum - 1) * spacing) / colNum;
+
+		float startX = BORDER_WIDTH; // start placing bricks after the left border
+		float startY = BORDER_WIDTH; // some space from the top of the window
+
+		for (int row = 0; row < rowNum; row++) {
+			for (int col = 0; col < colNum; col++) {
+				Vector2 brickTopLeftCorner = new Vector2(
+						startX + col * (brickWidth + spacing),
+						startY + row * (brickHeight + spacing)
+				);
+				Brick brick = new Brick(
+						brickTopLeftCorner,
+						new Vector2(brickWidth, brickHeight),
+						brickImage,
+						collisionStrategy
+				);
+//				gameObjects().addGameObject(brick, Layer.STATIC_OBJECTS);
+				gameObjects().addGameObject(brick);
+			}
+		}
+
 	}
 
 

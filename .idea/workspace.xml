@@ -4,36 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0062196f-76fb-4078-963a-40cf7698a49d" name="Changes" comment="" />
-    <list id="41dc2122-1510-4dad-8d2f-8c5dda222e31" name="Changes by adi" comment="Changes by adi">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/Attribution.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/Bubble5_4.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/DARK_BG2_small.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/ball.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/blop.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/botBad.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/botGood.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/brick.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/buffNarrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/buffWiden.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/gravity.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/heart.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/mockBall.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/paddle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/quicken.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redball.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/slow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/BasicCollisionStrategy.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/CollisionStrategy.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project02/gameobjects/Ball.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project02/gameobjects/Brick.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project02/gameobjects/Paddle.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project02.iml" afterDir="false" />
+    <list default="true" id="0062196f-76fb-4078-963a-40cf7698a49d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BrickerGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BrickerGameManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,6 +39,7 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Application.BouncingBallGameManager.executor": "Run",
     "Application.BrickerGameManager.executor": "Run",
+    "Application.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -93,6 +67,19 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="BrickerGameManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.BrickerGameManager" />
+      <module name="project02" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="project02" />
       <method v="2">
@@ -154,6 +141,11 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BrickerGameManager" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -173,8 +165,17 @@
       <updated>1745836540386</updated>
       <workItem from="1745836541280" duration="6974000" />
       <workItem from="1745845515026" duration="75000" />
-      <workItem from="1745845628734" duration="11251000" />
+      <workItem from="1745845628734" duration="13022000" />
     </task>
+    <task id="LOCAL‎-00001" summary="Changes by adi">
+      <option name="closed" value="true" />
+      <created>1745857075906</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL‎-00001" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1745857075907</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
