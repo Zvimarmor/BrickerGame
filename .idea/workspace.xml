@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0062196f-76fb-4078-963a-40cf7698a49d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/BasicCollisionStrategy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/BasicCollisionStrategy.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/brick_strategies/BasicCollisionStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/brick_strategies/BasicCollisionStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BrickerGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BrickerGameManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +27,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Zvimarmor"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Zvimarmor/BrickerGame.git",
+    "accountId": "0d818609-0db8-4ba8-88f1-6664cdb77efd"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -165,7 +179,7 @@
       <updated>1745836540386</updated>
       <workItem from="1745836541280" duration="6974000" />
       <workItem from="1745845515026" duration="75000" />
-      <workItem from="1745845628734" duration="13022000" />
+      <workItem from="1745845628734" duration="24888000" />
     </task>
     <task id="LOCAL‎-00001" summary="Changes by adi">
       <option name="closed" value="true" />

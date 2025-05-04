@@ -2,6 +2,7 @@ package brick_strategies;
 
 import danogl.GameObject;
 import danogl.collisions.GameObjectCollection;
+import danogl.collisions.Layer;
 import gameobjects.Ball;
 
 public class BasicCollisionStrategy implements CollisionStrategy {
@@ -12,6 +13,6 @@ public class BasicCollisionStrategy implements CollisionStrategy {
 	}
 	@Override
 	public void onCollision(GameObject object1, GameObject object2) {
-		gameObjectCollection.removeGameObject(object1);
+		gameObjectCollection.removeGameObject(object1, Layer.STATIC_OBJECTS);
 	}
 }
