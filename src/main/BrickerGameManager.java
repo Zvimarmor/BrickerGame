@@ -150,7 +150,6 @@ public class BrickerGameManager extends GameManager {
 //		}
 //	}
 
-
 	/**
 	 * Adds a background image stretched to cover the window.
 	 */
@@ -238,6 +237,7 @@ public class BrickerGameManager extends GameManager {
 		float brickHeight = 15;
 		float availableWidth = windowDimensions.x() - 2 * BORDER_WIDTH;
 		float brickWidth = (availableWidth - (colBricksNum - 1) * spacing) / colBricksNum;
+		BrickFactory factory = new BrickFactory(gameObjects(), BRICKS_NUM, imageReader, soundReader);
 
 		float startX = BORDER_WIDTH;
 		float startY = BORDER_WIDTH;
@@ -245,7 +245,7 @@ public class BrickerGameManager extends GameManager {
 		// Create each brick at its calculated position
 		for (int row = 0; row < rowBricksNum; row++) {
 			for (int col = 0; col < colBricksNum; col++) {
-				CollisionStrategy collisionStrategy = new BrickFactory(gameObjects(),BRICKS_NUM).getStrategy();
+				CollisionStrategy collisionStrategy = factory.getStrategy();
 				Vector2 brickTopLeftCorner = new Vector2(
 						startX + col * (brickWidth + spacing),
 						startY + row * (brickHeight + spacing)
