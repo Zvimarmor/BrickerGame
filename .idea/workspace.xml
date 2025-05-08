@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0062196f-76fb-4078-963a-40cf7698a49d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/gameobjects/Heart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gameobjects/HeartsPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BrickerGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BrickerGameManager.java" afterDir="false" />
@@ -177,7 +179,7 @@
       <updated>1745836540386</updated>
       <workItem from="1745836541280" duration="6974000" />
       <workItem from="1745845515026" duration="75000" />
-      <workItem from="1745845628734" duration="41461000" />
+      <workItem from="1745845628734" duration="46762000" />
     </task>
     <task id="LOCAL‎-00001" summary="Changes by adi">
       <option name="closed" value="true" />

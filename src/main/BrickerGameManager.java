@@ -8,11 +8,12 @@ import danogl.collisions.Layer;
 import danogl.components.CoordinateSpace;
 import danogl.gui.*;
 import danogl.gui.rendering.Renderable;
+import danogl.gui.rendering.TextRenderable;
 import danogl.util.Vector2;
-import gameobjects.Ball;
-import gameobjects.Brick;
-import gameobjects.Paddle;
+import gameobjects.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -30,7 +31,9 @@ public class BrickerGameManager extends GameManager {
 	private SoundReader soundReader;
 	private WindowController windowController;
 	private Ball ball;                      // Ball instance
-	private int Lifes = 3;                  // Number of player lives
+	private List<GameObject> currentHeartsPanelObjects = new ArrayList<>();
+	private int MAX_LIFE_NUM;
+	private int LIFE_NUM = 3;// Number of player lives
 	private int bricks_num;                 // Number of bricks remaining
 
 	/**
@@ -59,11 +62,57 @@ public class BrickerGameManager extends GameManager {
 		this.windowController = windowController;
 
 		createBackground(imageReader, windowController);  // Background image
+		createHeartsPanel(imageReader);
 		createBall(imageReader, soundReader);             // Ball object
 		createPaddle(imageReader, inputListener);         // Paddle object
 		createBoundaries();                               // Invisible screen boundaries
 		createBricks(imageReader);                        // Bricks grid
 	}
+
+	private void createHeartsPanel(ImageReader imageReader) {
+		// הסר את הפאנל הקודם אם קיים
+		for (GameObject obj : currentHeartsPanelObjects) {
+			gameObjects().removeGameObject(obj, Layer.UI);
+		}
+		currentHeartsPanelObjects.clear();
+
+		// פרמטרים גרפיים
+		Vector2 panelTopLeft = new Vector2(windowDimensions.x() - 200, 10);
+		Vector2 panelSize = new Vector2(150, 30);
+		Renderable heartImage = imageReader.readImage("assets/heart.png", true);
+
+		float totalWidth = panelSize.x();
+		float totalHeight = panelSize.y();
+		float objectWidth = totalWidth / (LIFE_NUM + 1); // אחד לטקסט, שאר ללבבות
+
+		// טקסט נומרי
+		TextRenderable textRenderable = new TextRenderable(Integer.toString(LIFE_NUM));
+		if (LIFE_NUM >= 3) textRenderable.setColor(java.awt.Color.GREEN);
+		else if (LIFE_NUM == 2) textRenderable.setColor(java.awt.Color.YELLOW);
+		else textRenderable.setColor(java.awt.Color.RED);
+
+		GameObject textObject = new GameObject(
+				panelTopLeft,
+				new Vector2(objectWidth, totalHeight),
+				textRenderable
+		);
+		gameObjects().addGameObject(textObject, Layer.UI);
+		currentHeartsPanelObjects.add(textObject);
+
+		// לבבות
+		for (int i = 0; i < LIFE_NUM; i++) {
+			float xPos = panelTopLeft.x() + objectWidth + i * objectWidth;
+			GameObject heart = new GameObject(
+					new Vector2(xPos, panelTopLeft.y()),
+					new Vector2(objectWidth, totalHeight),
+					heartImage
+			);
+			gameObjects().addGameObject(heart, Layer.UI);
+			currentHeartsPanelObjects.add(heart);
+		}
+	}
+
+
 
 	/**
 	 * Adds a background image stretched to cover the window.
@@ -186,19 +235,19 @@ public class BrickerGameManager extends GameManager {
 	}
 
 	public void checkEndGame(){
-		// todo - float or double
 		float ballHeight = ball.getCenter().y();
 		String prompt = "";
 
 		if (ballHeight > windowDimensions.y()) {
-			Lifes--;
+			LIFE_NUM--;
+			createHeartsPanel(imageReader);
 			createBall(imageReader,soundReader);
 
-			if (Lifes == 0) {
+			if (LIFE_NUM == 0) {
 				// Game over
 				prompt = "You lose! Play again?";
 				if (windowController.openYesNoDialog(prompt)) {
-					Lifes = 3;
+					LIFE_NUM = 3;
 					windowController.resetGame();
 				}
 				else {
