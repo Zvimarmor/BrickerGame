@@ -1,6 +1,5 @@
 package main;
 
-import brick_strategies.BasicCollisionStrategy;
 import brick_strategies.BrickFactory;
 import brick_strategies.CollisionStrategy;
 import danogl.GameManager;
@@ -19,26 +18,33 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import main.Constants;
 
 /**
  * Main class that manages the Bricker game.
  * Responsible for initializing game objects and game logic.
  */
 public class BrickerGameManager extends GameManager {
-	// Constants and game parameters
-	private int BORDER_WIDTH = 3;           // Width of the screen borders
-	private float BALL_SPEED = 150;         // Initial speed of the ball
-	private int rowBricksNum;                     // Number of brick rows
-	private int colBricksNum;                     // Number of brick columns
-	private Vector2 windowDimensions;       // Window dimensions
+	// Final Constants
+	private int BORDER_WIDTH = Constants.BORDER_WIDTH;// Width of the screen borders
+	private float BALL_SPEED = Constants.BALL_SPEED;// Initial speed of the ball
+	private int MAX_LIFE_NUM = Constants.MAX_LIFE_NUM;
+	private int LIFE_NUM = Constants.LIFE_NUM; // Number of player lives
+
+	// get in the constructor
+	private int rowBricksNum; // Number of brick rows
+	private int colBricksNum; // Number of brick columns
+	private Vector2 windowDimensions; // Window dimensions
+
+	// initializeGame - game parameters
 	private ImageReader imageReader;
 	private SoundReader soundReader;
 	private WindowController windowController;
 	private UserInputListener userInputListener;
 	private Ball ball;                      // Ball instance
 	private List<GameObject> currentHeartsObjects = new ArrayList<>();
-	private int MAX_LIFE_NUM = 5;
-	private int LIFE_NUM = 3;                              // Number of player lives
+	private HeartsPanel heartsPanel;
+
 
 	private danogl.util.Counter BRICKS_NUM;             // Number of bricks remaining
 
@@ -70,7 +76,7 @@ public class BrickerGameManager extends GameManager {
 		this.userInputListener = inputListener;
 
 		createBackground(imageReader, windowController);  // Background image
-		createHeartsPanel(imageReader);
+		createHeartsPanel();
 		createBall(imageReader, soundReader);             // Ball object
 		createPaddle(imageReader, inputListener);         // Paddle object
 		createBoundaries();                               // Invisible screen boundaries
@@ -80,49 +86,69 @@ public class BrickerGameManager extends GameManager {
 	/**
 	 * Adds a heart panel to show the life the user have.
 	 */
-	private void createHeartsPanel(ImageReader imageReader) {
-		// remove current panel if exist
+	private void createHeartsPanel() {
+		// הסר את האובייקטים הקודמים
 		for (GameObject obj : currentHeartsObjects) {
 			gameObjects().removeGameObject(obj, Layer.UI);
 		}
 		currentHeartsObjects.clear();
 
-		// init the graphic parameters for the panel of hearts
-		Vector2 panelTopLeft = new Vector2(windowDimensions.x() - 200, 10);
-		Vector2 panelSize = new Vector2(200, 30);
-		Renderable heartImage = imageReader.readImage("assets/heart.png", true);
+		// צור את הפאנל
+		heartsPanel = new HeartsPanel(imageReader, LIFE_NUM);
+		gameObjects().addGameObject(heartsPanel, Layer.UI);
+		currentHeartsObjects.add(heartsPanel);
 
-		float totalWidth = panelSize.x();
-		float totalHeight = panelSize.y();
-		float objectWidth = totalWidth / (MAX_LIFE_NUM + 1);
+		gameObjects().addGameObject(heartsPanel.getTextObject(), Layer.UI);
+		currentHeartsObjects.add(heartsPanel.getTextObject());
 
-		// init the text visualization
-		TextRenderable textRenderable = new TextRenderable(Integer.toString(LIFE_NUM));
-		if (LIFE_NUM >= 3) textRenderable.setColor(Color.green);
-		else if (LIFE_NUM == 2) textRenderable.setColor(Color.yellow);
-		else textRenderable.setColor(Color.red);
-
-		GameObject textObject = new GameObject(
-				panelTopLeft,
-				new Vector2(objectWidth, totalHeight),
-				textRenderable
-		);
-		gameObjects().addGameObject(textObject, Layer.UI);
-		currentHeartsObjects.add(textObject);
-
-		// creates the hearts
-		for (int i = 0; i < LIFE_NUM; i++) {
-			float xPos = panelTopLeft.x() + objectWidth + i * objectWidth;
-			GameObject heart = new GameObject(
-					new Vector2(xPos, panelTopLeft.y()),
-					new Vector2(objectWidth, totalHeight),
-					heartImage
-			);
+		for (GameObject heart : heartsPanel.getHeartObjects()) {
 			gameObjects().addGameObject(heart, Layer.UI);
 			currentHeartsObjects.add(heart);
 		}
 	}
 
+//	private void createHeartsPanel(ImageReader imageReader) {
+//		// remove current panel if exist
+//		for (GameObject obj : currentHeartsObjects) {
+//			gameObjects().removeGameObject(obj, Layer.UI);
+//		}
+//		currentHeartsObjects.clear();
+//
+//		// init the graphic parameters for the panel of hearts
+//		Vector2 panelTopLeft = new Vector2(windowDimensions.x() - 200, 10);
+//		Vector2 panelSize = new Vector2(200, 30);
+//		Renderable heartImage = imageReader.readImage("assets/heart.png", true);
+//
+//		float totalWidth = panelSize.x();
+//		float totalHeight = panelSize.y();
+//		float objectWidth = totalWidth / (MAX_LIFE_NUM + 1);
+//
+//		// init the text visualization
+//		TextRenderable textRenderable = new TextRenderable(Integer.toString(LIFE_NUM));
+//		if (LIFE_NUM >= 3) textRenderable.setColor(Color.green);
+//		else if (LIFE_NUM == 2) textRenderable.setColor(Color.yellow);
+//		else textRenderable.setColor(Color.red);
+//
+//		GameObject textObject = new GameObject(
+//				panelTopLeft,
+//				new Vector2(objectWidth, totalHeight),
+//				textRenderable
+//		);
+//		gameObjects().addGameObject(textObject, Layer.UI);
+//		currentHeartsObjects.add(textObject);
+//
+//		// creates the hearts
+//		for (int i = 0; i < LIFE_NUM; i++) {
+//			float xPos = panelTopLeft.x() + objectWidth + i * objectWidth;
+//			GameObject heart = new GameObject(
+//					new Vector2(xPos, panelTopLeft.y()),
+//					new Vector2(objectWidth, totalHeight),
+//					heartImage
+//			);
+//			gameObjects().addGameObject(heart, Layer.UI);
+//			currentHeartsObjects.add(heart);
+//		}
+//	}
 
 
 	/**
@@ -261,7 +287,9 @@ public class BrickerGameManager extends GameManager {
 
 		if (ballHeight > windowDimensions.y()) {
 			LIFE_NUM--;
-			createHeartsPanel(imageReader);
+			createHeartsPanel();
+			LIFE_NUM = heartsPanel.getLifeNum();
+
 			createBall(imageReader, soundReader);
 
 			if (LIFE_NUM == 0) {
@@ -287,6 +315,7 @@ public class BrickerGameManager extends GameManager {
 			colBricksNum = Integer.parseInt(args[0]);
 			rowBricksNum = Integer.parseInt(args[1]);
 		}
-		new BrickerGameManager("Bricker Game", new Vector2(700, 500), rowBricksNum, colBricksNum).run();
+		new BrickerGameManager("Bricker Game",
+				Constants.windowDimensions, rowBricksNum, colBricksNum).run();
 	}
 }

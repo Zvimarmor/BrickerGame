@@ -5,108 +5,120 @@ import danogl.gui.ImageReader;
 import danogl.gui.rendering.Renderable;
 import danogl.gui.rendering.TextRenderable;
 import danogl.util.Vector2;
+import main.Constants;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A visual panel that displays the player's remaining lives using hearts and a colored number.
- */
-public class HeartsPanel {
-	private static final float PANEL_WIDTH = 200;
-	private static final float PANEL_HEIGHT = 30;
+public class HeartsPanel extends GameObject {
+    private static final float PADDING = 5f;
+    private static final float HEART_ASPECT_RATIO = 1f;
+    private static final float HEART_SCALE = 0.7f;
 
-	private final List<GameObject> currentHeartsObjects;
-	private final Vector2 panelTopLeft;
-	private final int maxLives;
-	private final Renderable heartImage;
-	private final GameObject textObject;
-	private final List<GameObject> gameObjectRegistry;
+    private final List<GameObject> heartObjects = new ArrayList<>();
+    private final GameObject textObject;
+    private final TextRenderable textRenderable;
+    private final Vector2 panelTopLeft;
+    private final Vector2 panelSize;
+    private final Renderable heartImage;
+    private int lifeNum;
 
-	/**
-	 * Constructs a HeartsPanel with a given number of lives.
-	 *
-	 * @param gameObjectRegistry List to simulate game object collection.
-	 * @param topLeft Top-left corner of the panel.
-	 * @param initialLives Initial number of lives.
-	 * @param maxLives Maximum number of lives.
-	 * @param imageReader ImageReader for loading heart image.
-	 */
-	public HeartsPanel(List<GameObject> gameObjectRegistry,
-					   Vector2 topLeft,
-					   int initialLives,
-					   int maxLives,
-					   ImageReader imageReader) {
-		this.panelTopLeft = topLeft;
-		this.maxLives = maxLives;
-		this.currentHeartsObjects = new ArrayList<>();
-		this.gameObjectRegistry = gameObjectRegistry;
+    public HeartsPanel(ImageReader imageReader, int initialLives) {
+        super(Constants.panelTopLeft, Constants.panelSize,
+                imageReader.readImage("assets/HeartsPanel.png", true));
 
-		this.heartImage = imageReader.readImage("assets/heart.png", true);
+        this.panelTopLeft = Constants.panelTopLeft;
+        this.panelSize = Constants.panelSize;
+        this.lifeNum = initialLives;
+        this.heartImage = imageReader.readImage("assets/heart.png", true);
 
-		float objectWidth = PANEL_WIDTH / (maxLives + 1);
+        float totalWidth = panelSize.x() - 2 * PADDING;
+        float objectWidth = totalWidth / (Constants.MAX_LIFE_NUM + 1);
+        float objectHeight = panelSize.y() - 2 * PADDING;
+        Vector2 objectSize = new Vector2(objectWidth, objectHeight);
+        Vector2 textPos = new Vector2(panelTopLeft.x() + PADDING, panelTopLeft.y() + PADDING);
 
-		TextRenderable textRenderable = new TextRenderable(Integer.toString(initialLives));
-		if (initialLives >= 3) textRenderable.setColor(Color.GREEN);
-		else if (initialLives == 2) textRenderable.setColor(Color.YELLOW);
-		else textRenderable.setColor(Color.RED);
+        // text
+        textRenderable = new TextRenderable(Integer.toString(lifeNum));
+        updateTextColor();
+        textObject = new GameObject(textPos, objectSize, textRenderable);
 
-		this.textObject = new GameObject(
-				topLeft,
-				new Vector2(objectWidth, PANEL_HEIGHT),
-				textRenderable
-		);
-		gameObjectRegistry.add(textObject);
-		currentHeartsObjects.add(textObject);
+        // hearts
+        createHearts(objectWidth, textPos);
+    }
 
-		for (int i = 0; i < initialLives; i++) {
-			float xPos = topLeft.x() + objectWidth + i * objectWidth;
-			GameObject heart = new GameObject(
-					new Vector2(xPos, topLeft.y()),
-					new Vector2(objectWidth, PANEL_HEIGHT),
-					heartImage
-			);
-			gameObjectRegistry.add(heart);
-			currentHeartsObjects.add(heart);
-		}
-	}
+    private void createHearts(float objectWidth, Vector2 textPos) {
+        heartObjects.clear();
 
-	/**
-	 * Updates the panel to reflect a new number of lives.
-	 *
-	 * @param lives Current number of lives.
-	 */
-	public void update(int lives) {
-		for (GameObject obj : currentHeartsObjects) {
-			gameObjectRegistry.remove(obj);
-		}
-		currentHeartsObjects.clear();
+        float heartWidth = objectWidth * HEART_SCALE;
+        float heartHeight = heartWidth / HEART_ASPECT_RATIO;
 
-		float objectWidth = PANEL_WIDTH / (maxLives + 1);
+        float yCenter = panelTopLeft.y() + panelSize.y() / 2f;
+        float heartTop = yCenter - heartHeight / 2f;
 
-		TextRenderable textRenderable = new TextRenderable(Integer.toString(lives));
-		if (lives >= 3) textRenderable.setColor(Color.GREEN);
-		else if (lives == 2) textRenderable.setColor(Color.YELLOW);
-		else textRenderable.setColor(Color.RED);
+        for (int i = 0; i < lifeNum; i++) {
+            float xPos = textPos.x() + objectWidth + i * objectWidth;
+            Vector2 heartPos = new Vector2(xPos, heartTop);
+            Vector2 heartSize = new Vector2(heartWidth, heartHeight);
 
-		GameObject text = new GameObject(
-				panelTopLeft,
-				new Vector2(objectWidth, PANEL_HEIGHT),
-				textRenderable
-		);
-		gameObjectRegistry.add(text);
-		currentHeartsObjects.add(text);
+            GameObject heart = new GameObject(heartPos, heartSize, heartImage);
+            heartObjects.add(heart);
+        }
+    }
 
-		for (int i = 0; i < lives; i++) {
-			float xPos = panelTopLeft.x() + objectWidth + i * objectWidth;
-			GameObject heart = new GameObject(
-					new Vector2(xPos, panelTopLeft.y()),
-					new Vector2(objectWidth, PANEL_HEIGHT),
-					heartImage
-			);
-			gameObjectRegistry.add(heart);
-			currentHeartsObjects.add(heart);
-		}
-	}
+    private void updateTextColor() {
+        if (lifeNum >= 3)
+            textRenderable.setColor(Color.GREEN);
+        else if (lifeNum == 2)
+            textRenderable.setColor(Color.YELLOW);
+        else
+            textRenderable.setColor(Color.RED);
+    }
+
+    public int getLifeNum() {
+        return lifeNum;
+    }
+
+    public GameObject getTextObject() {
+        return textObject;
+    }
+
+    public List<GameObject> getHeartObjects() {
+        return new ArrayList<>(heartObjects);
+    }
+
+    // shitssss
+//    private void updateText() {
+//        textRenderable.setString(Integer.toString(lifeNum));
+//        updateTextColor();
+
+//    }
+//    public void addHeart() {
+//        if (lifeNum < Constants.MAX_LIFE_NUM) {
+//            lifeNum++;
+//            recreateHearts();
+//        }
+
+//    }
+//    public void removeHeart() {
+//        if (lifeNum > 0) {
+//            lifeNum--;
+//            recreateHearts();
+//        }
+
+//    }
+//    public void resetHearts(int newLifeNum) {
+//        lifeNum = Math.min(newLifeNum, Constants.MAX_LIFE_NUM);
+//        recreateHearts();
+
+//    }
+//    private void recreateHearts() {
+//        float totalWidth = panelSize.x() - 2 * PADDING;
+//        float objectWidth = totalWidth / (Constants.MAX_LIFE_NUM + 1);
+//        Vector2 textPos = new Vector2(panelTopLeft.x() + PADDING, panelTopLeft.y() + PADDING);
+//        createHearts(objectWidth, textPos);
+
+//        updateText();
+//    }
 }

@@ -4,14 +4,14 @@ import danogl.GameObject;
 import danogl.gui.UserInputListener;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
+import main.Constants;
 
 import java.awt.event.KeyEvent;
 
 
 public class Paddle extends GameObject {
-	private static float MOVEMENT_SPEED = 300;
-	//todo : magic number, need to fix
-	private float WINDOW_WIDTH = 700;
+	private static float MOVEMENT_SPEED = Constants.MOVEMENT_SPEED;
+	private float WINDOW_WIDTH = Constants.windowDimensions.x();
 	private UserInputListener inputListener;
 
 	/**
