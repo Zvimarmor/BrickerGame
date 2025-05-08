@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 
 public class Paddle extends GameObject {
 	private static float MOVEMENT_SPEED = 300;
+	//todo : magic number, need to fix
 	private float WINDOW_WIDTH = 700;
 	private UserInputListener inputListener;
 

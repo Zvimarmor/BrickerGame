@@ -1,6 +1,7 @@
 package main;
 
 import brick_strategies.BasicCollisionStrategy;
+import brick_strategies.BrickFactory;
 import brick_strategies.CollisionStrategy;
 import danogl.GameManager;
 import danogl.GameObject;
@@ -14,6 +15,7 @@ import danogl.util.Counter;
 import gameobjects.*;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -32,6 +34,7 @@ public class BrickerGameManager extends GameManager {
 	private ImageReader imageReader;
 	private SoundReader soundReader;
 	private WindowController windowController;
+	private UserInputListener userInputListener;
 	private Ball ball;                      // Ball instance
 	private List<GameObject> currentHeartsObjects = new ArrayList<>();
 	private int MAX_LIFE_NUM = 5;
@@ -64,6 +67,7 @@ public class BrickerGameManager extends GameManager {
 		this.imageReader = imageReader;
 		this.soundReader = soundReader;
 		this.windowController = windowController;
+		this.userInputListener = inputListener;
 
 		createBackground(imageReader, windowController);  // Background image
 		createHeartsPanel(imageReader);
@@ -202,7 +206,6 @@ public class BrickerGameManager extends GameManager {
 	 * Creates a grid of bricks with spacing.
 	 */
 	private void createBricks(ImageReader imageReader) {
-		CollisionStrategy collisionStrategy = new BasicCollisionStrategy(gameObjects(),BRICKS_NUM);
 		Renderable brickImage = imageReader.readImage("assets/brick.png", false);
 
 		float spacing = 5;
@@ -216,6 +219,7 @@ public class BrickerGameManager extends GameManager {
 		// Create each brick at its calculated position
 		for (int row = 0; row < rowBricksNum; row++) {
 			for (int col = 0; col < colBricksNum; col++) {
+				CollisionStrategy collisionStrategy = new BrickFactory(gameObjects(),BRICKS_NUM).getStrategy();
 				Vector2 brickTopLeftCorner = new Vector2(
 						startX + col * (brickWidth + spacing),
 						startY + row * (brickHeight + spacing)
@@ -244,7 +248,7 @@ public class BrickerGameManager extends GameManager {
 		float ballHeight = ball.getCenter().y();
 		String prompt = "";
 
-		if (BRICKS_NUM.value() == 0) {
+		if (BRICKS_NUM.value() == 0 || userInputListener.isKeyPressed(KeyEvent.VK_W)) {
 			prompt = "You win!!! Play again?";
 			if (windowController.openYesNoDialog(prompt)) {
 				LIFE_NUM = MAX_LIFE_NUM;
