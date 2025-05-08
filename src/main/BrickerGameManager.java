@@ -10,6 +10,7 @@ import danogl.gui.*;
 import danogl.gui.rendering.Renderable;
 import danogl.gui.rendering.TextRenderable;
 import danogl.util.Vector2;
+import danogl.util.Counter;
 import gameobjects.*;
 
 import java.awt.*;
@@ -25,8 +26,8 @@ public class BrickerGameManager extends GameManager {
 	// Constants and game parameters
 	private int BORDER_WIDTH = 3;           // Width of the screen borders
 	private float BALL_SPEED = 150;         // Initial speed of the ball
-	private int rowNum;                     // Number of brick rows
-	private int colNum;                     // Number of brick columns
+	private int rowBricksNum;                     // Number of brick rows
+	private int colBricksNum;                     // Number of brick columns
 	private Vector2 windowDimensions;       // Window dimensions
 	private ImageReader imageReader;
 	private SoundReader soundReader;
@@ -34,20 +35,23 @@ public class BrickerGameManager extends GameManager {
 	private Ball ball;                      // Ball instance
 	private List<GameObject> currentHeartsObjects = new ArrayList<>();
 	private int MAX_LIFE_NUM = 5;
-	private int LIFE_NUM = 3;// Number of player lives
-	private int bricks_num;                 // Number of bricks remaining
+	private int LIFE_NUM = 3;                              // Number of player lives
+
+	private danogl.util.Counter BRICKS_NUM;             // Number of bricks remaining
 
 	/**
 	 * Constructor for the game manager.
 	 * @param windowTitle The title of the game window.
 	 * @param windowDimensions The size of the game window.
-	 * @param rowNum Number of rows of bricks.
-	 * @param colNum Number of columns of bricks.
+	 * @param rowBricksNum Number of rows of bricks.
+	 * @param colBricksNum Number of columns of bricks.
 	 */
-	public BrickerGameManager(String windowTitle, Vector2 windowDimensions, int rowNum, int colNum) {
+	public BrickerGameManager(String windowTitle, Vector2 windowDimensions, int rowBricksNum, int colBricksNum) {
 		super(windowTitle, windowDimensions);
-		this.rowNum = rowNum;
-		this.colNum = colNum;
+		this.windowDimensions = windowDimensions;
+		this.rowBricksNum = rowBricksNum;
+		this.colBricksNum = colBricksNum;
+		BRICKS_NUM = new danogl.util.Counter(colBricksNum * rowBricksNum);
 	}
 
 	/**
@@ -57,7 +61,6 @@ public class BrickerGameManager extends GameManager {
 	public void initializeGame(ImageReader imageReader, SoundReader soundReader,
 							   UserInputListener inputListener, WindowController windowController) {
 		super.initializeGame(imageReader, soundReader, inputListener, windowController);
-		this.windowDimensions = windowController.getWindowDimensions();
 		this.imageReader = imageReader;
 		this.soundReader = soundReader;
 		this.windowController = windowController;
@@ -199,20 +202,20 @@ public class BrickerGameManager extends GameManager {
 	 * Creates a grid of bricks with spacing.
 	 */
 	private void createBricks(ImageReader imageReader) {
-		CollisionStrategy collisionStrategy = new BasicCollisionStrategy(gameObjects());
+		CollisionStrategy collisionStrategy = new BasicCollisionStrategy(gameObjects(),BRICKS_NUM);
 		Renderable brickImage = imageReader.readImage("assets/brick.png", false);
 
 		float spacing = 5;
 		float brickHeight = 15;
 		float availableWidth = windowDimensions.x() - 2 * BORDER_WIDTH;
-		float brickWidth = (availableWidth - (colNum - 1) * spacing) / colNum;
+		float brickWidth = (availableWidth - (colBricksNum - 1) * spacing) / colBricksNum;
 
 		float startX = BORDER_WIDTH;
 		float startY = BORDER_WIDTH;
 
 		// Create each brick at its calculated position
-		for (int row = 0; row < rowNum; row++) {
-			for (int col = 0; col < colNum; col++) {
+		for (int row = 0; row < rowBricksNum; row++) {
+			for (int col = 0; col < colBricksNum; col++) {
 				Vector2 brickTopLeftCorner = new Vector2(
 						startX + col * (brickWidth + spacing),
 						startY + row * (brickHeight + spacing)
@@ -224,7 +227,6 @@ public class BrickerGameManager extends GameManager {
 						collisionStrategy
 				);
 				gameObjects().addGameObject(brick, Layer.STATIC_OBJECTS);
-				bricks_num++;
 			}
 		}
 	}
@@ -238,23 +240,33 @@ public class BrickerGameManager extends GameManager {
 		checkEndGame();
 	}
 
-	public void checkEndGame(){
+	public void checkEndGame() {
 		float ballHeight = ball.getCenter().y();
 		String prompt = "";
+
+		if (BRICKS_NUM.value() == 0) {
+			prompt = "You win!!! Play again?";
+			if (windowController.openYesNoDialog(prompt)) {
+				LIFE_NUM = MAX_LIFE_NUM;
+				BRICKS_NUM = new Counter(rowBricksNum * colBricksNum);
+				windowController.resetGame();
+			} else {
+				windowController.closeWindow();
+			}
+		}
 
 		if (ballHeight > windowDimensions.y()) {
 			LIFE_NUM--;
 			createHeartsPanel(imageReader);
-			createBall(imageReader,soundReader);
+			createBall(imageReader, soundReader);
 
 			if (LIFE_NUM == 0) {
 				// Game over
 				prompt = "You lose! Play again?";
 				if (windowController.openYesNoDialog(prompt)) {
-					LIFE_NUM = 3;
+					LIFE_NUM = MAX_LIFE_NUM;
 					windowController.resetGame();
-				}
-				else {
+				} else {
 					windowController.closeWindow();
 				}
 			}
@@ -265,12 +277,12 @@ public class BrickerGameManager extends GameManager {
 	 * Entry point — starts the game with default (or CLI-provided) row/col values.
 	 */
 	public static void main(String[] args) {
-		int rowNum = 7;
-		int colNum = 8;
+		int rowBricksNum = 7;
+		int colBricksNum = 8;
 		if (args.length == 2) {
-			colNum = Integer.parseInt(args[0]);
-			rowNum = Integer.parseInt(args[1]);
+			colBricksNum = Integer.parseInt(args[0]);
+			rowBricksNum = Integer.parseInt(args[1]);
 		}
-		new BrickerGameManager("Bricker Game", new Vector2(700, 500), rowNum, colNum).run();
+		new BrickerGameManager("Bricker Game", new Vector2(700, 500), rowBricksNum, colBricksNum).run();
 	}
 }

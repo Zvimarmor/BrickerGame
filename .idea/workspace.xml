@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0062196f-76fb-4078-963a-40cf7698a49d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/BasicCollisionStrategy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/BasicCollisionStrategy.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameobjects/HeartsPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/brick_strategies/BasicCollisionStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/brick_strategies/BasicCollisionStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BrickerGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BrickerGameManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -83,6 +84,7 @@
     <configuration name="BrickerGameManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.BrickerGameManager" />
       <module name="project02" />
+      <option name="PROGRAM_PARAMETERS" value="2 2" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="main.*" />
@@ -178,7 +180,7 @@
       <updated>1745836540386</updated>
       <workItem from="1745836541280" duration="6974000" />
       <workItem from="1745845515026" duration="75000" />
-      <workItem from="1745845628734" duration="47607000" />
+      <workItem from="1745845628734" duration="50227000" />
     </task>
     <task id="LOCAL‎-00001" summary="Changes by adi">
       <option name="closed" value="true" />
