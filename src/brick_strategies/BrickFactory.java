@@ -21,16 +21,16 @@ public class BrickFactory {
 	public CollisionStrategy getStrategy() {
 		int roll = rand.nextInt(10);
 		switch (roll) {
-			case 0:
-				return new ExtraBallsStrategy(gameObjects, bricksNum);
-			case 1:
-				return new PaddleDuplicatorStrategy(gameObjects, bricksNum);
-			case 2:
-				return new TurboModeStrategy(gameObjects, bricksNum);
-			case 3:
-				return new LifeRestorationStrategy(gameObjects, bricksNum);
-			case 4:
-				return new DoubleStrategy(new BasicCollisionStrategy(gameObjects, bricksNum));
+//			case 0:
+//				return new ExtraBallsStrategy(gameObjects, bricksNum);
+//			case 1:
+//				return new PaddleDuplicatorStrategy(gameObjects, bricksNum);
+//			case 2:
+//				return new TurboModeStrategy(gameObjects, bricksNum);
+//			case 3:
+//				return new LifeRestorationStrategy(gameObjects, bricksNum);
+//			case 4:
+//				return new DoubleStrategy(new BasicCollisionStrategy(gameObjects, bricksNum));
 			default:
 				return new BasicCollisionStrategy(gameObjects, bricksNum);
 		}

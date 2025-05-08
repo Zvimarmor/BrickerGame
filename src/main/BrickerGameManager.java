@@ -87,13 +87,13 @@ public class BrickerGameManager extends GameManager {
 	 * Adds a heart panel to show the life the user have.
 	 */
 	private void createHeartsPanel() {
-		// הסר את האובייקטים הקודמים
+		// remove the current hearts panel if exists
 		for (GameObject obj : currentHeartsObjects) {
 			gameObjects().removeGameObject(obj, Layer.UI);
 		}
 		currentHeartsObjects.clear();
 
-		// צור את הפאנל
+		//creates the new panel
 		heartsPanel = new HeartsPanel(imageReader, LIFE_NUM);
 		gameObjects().addGameObject(heartsPanel, Layer.UI);
 		currentHeartsObjects.add(heartsPanel);
@@ -275,7 +275,7 @@ public class BrickerGameManager extends GameManager {
 		String prompt = "";
 
 		if (BRICKS_NUM.value() == 0 || userInputListener.isKeyPressed(KeyEvent.VK_W)) {
-			prompt = "You win!!! Play again?";
+			prompt = "You win! Play again?";
 			if (windowController.openYesNoDialog(prompt)) {
 				LIFE_NUM = MAX_LIFE_NUM;
 				BRICKS_NUM = new Counter(rowBricksNum * colBricksNum);
