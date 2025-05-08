@@ -12,6 +12,7 @@ import danogl.gui.rendering.TextRenderable;
 import danogl.util.Vector2;
 import gameobjects.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -31,8 +32,8 @@ public class BrickerGameManager extends GameManager {
 	private SoundReader soundReader;
 	private WindowController windowController;
 	private Ball ball;                      // Ball instance
-	private List<GameObject> currentHeartsPanelObjects = new ArrayList<>();
-	private int MAX_LIFE_NUM;
+	private List<GameObject> currentHeartsObjects = new ArrayList<>();
+	private int MAX_LIFE_NUM = 5;
 	private int LIFE_NUM = 3;// Number of player lives
 	private int bricks_num;                 // Number of bricks remaining
 
@@ -69,27 +70,30 @@ public class BrickerGameManager extends GameManager {
 		createBricks(imageReader);                        // Bricks grid
 	}
 
+	/**
+	 * Adds a heart panel to show the life the user have.
+	 */
 	private void createHeartsPanel(ImageReader imageReader) {
-		// הסר את הפאנל הקודם אם קיים
-		for (GameObject obj : currentHeartsPanelObjects) {
+		// remove current panel if exist
+		for (GameObject obj : currentHeartsObjects) {
 			gameObjects().removeGameObject(obj, Layer.UI);
 		}
-		currentHeartsPanelObjects.clear();
+		currentHeartsObjects.clear();
 
-		// פרמטרים גרפיים
+		// init the graphic parameters for the panel of hearts
 		Vector2 panelTopLeft = new Vector2(windowDimensions.x() - 200, 10);
-		Vector2 panelSize = new Vector2(150, 30);
+		Vector2 panelSize = new Vector2(200, 30);
 		Renderable heartImage = imageReader.readImage("assets/heart.png", true);
 
 		float totalWidth = panelSize.x();
 		float totalHeight = panelSize.y();
-		float objectWidth = totalWidth / (LIFE_NUM + 1); // אחד לטקסט, שאר ללבבות
+		float objectWidth = totalWidth / (MAX_LIFE_NUM + 1);
 
-		// טקסט נומרי
+		// init the text visualization
 		TextRenderable textRenderable = new TextRenderable(Integer.toString(LIFE_NUM));
-		if (LIFE_NUM >= 3) textRenderable.setColor(java.awt.Color.GREEN);
-		else if (LIFE_NUM == 2) textRenderable.setColor(java.awt.Color.YELLOW);
-		else textRenderable.setColor(java.awt.Color.RED);
+		if (LIFE_NUM >= 3) textRenderable.setColor(Color.green);
+		else if (LIFE_NUM == 2) textRenderable.setColor(Color.yellow);
+		else textRenderable.setColor(Color.red);
 
 		GameObject textObject = new GameObject(
 				panelTopLeft,
@@ -97,9 +101,9 @@ public class BrickerGameManager extends GameManager {
 				textRenderable
 		);
 		gameObjects().addGameObject(textObject, Layer.UI);
-		currentHeartsPanelObjects.add(textObject);
+		currentHeartsObjects.add(textObject);
 
-		// לבבות
+		// creates the hearts
 		for (int i = 0; i < LIFE_NUM; i++) {
 			float xPos = panelTopLeft.x() + objectWidth + i * objectWidth;
 			GameObject heart = new GameObject(
@@ -108,7 +112,7 @@ public class BrickerGameManager extends GameManager {
 					heartImage
 			);
 			gameObjects().addGameObject(heart, Layer.UI);
-			currentHeartsPanelObjects.add(heart);
+			currentHeartsObjects.add(heart);
 		}
 	}
 
