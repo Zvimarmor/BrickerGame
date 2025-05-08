@@ -28,6 +28,7 @@ public class BrickerGameManager extends GameManager {
 	private Vector2 windowDimensions;       // Window dimensions
 	private ImageReader imageReader;
 	private SoundReader soundReader;
+	private WindowController windowController;
 	private Ball ball;                      // Ball instance
 	private int Lifes = 3;                  // Number of player lives
 	private int bricks_num;                 // Number of bricks remaining
@@ -55,6 +56,7 @@ public class BrickerGameManager extends GameManager {
 		this.windowDimensions = windowController.getWindowDimensions();
 		this.imageReader = imageReader;
 		this.soundReader = soundReader;
+		this.windowController = windowController;
 
 		createBackground(imageReader, windowController);  // Background image
 		createBall(imageReader, soundReader);             // Ball object
@@ -180,17 +182,28 @@ public class BrickerGameManager extends GameManager {
 	@Override
 	public void update(float delta) {
 		super.update(delta);
-		double ballHeight = ball.getCenter().y();
+		checkEndGame();
+	}
+
+	public void checkEndGame(){
+		// todo - float or double
+		float ballHeight = ball.getCenter().y();
+		String prompt = "";
 
 		if (ballHeight > windowDimensions.y()) {
 			Lifes--;
 			createBall(imageReader,soundReader);
+
 			if (Lifes == 0) {
 				// Game over
-				// prompt = "You lose! Play again?";
-				// TODO: Add restart or game over logic
-			} else {
-				// TODO: Reset ball position for next life
+				prompt = "You lose! Play again?";
+				if (windowController.openYesNoDialog(prompt)) {
+					Lifes = 3;
+					windowController.resetGame();
+				}
+				else {
+					windowController.closeWindow();
+				}
 			}
 		}
 	}
