@@ -11,6 +11,7 @@ import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
 import danogl.util.Counter;
 import gameobjects.Puck;
+import main.Constants;
 
 import java.util.Random;
 
@@ -22,6 +23,7 @@ public class ExtraBallsStrategy implements CollisionStrategy {
 	private final Counter bricksCounter;
 	private final ImageReader imageReader;
 	private final SoundReader soundReader;
+	private final float PUCK_PROPOTION_SIZE = 0.75f;
 
 	public ExtraBallsStrategy(GameObjectCollection gameObjects, Counter bricksCounter,
 							  ImageReader imageReader, SoundReader soundReader) {
@@ -33,14 +35,16 @@ public class ExtraBallsStrategy implements CollisionStrategy {
 
 	@Override
 	public void onCollision(GameObject brick, GameObject collider) {
-		gameObjects.removeGameObject(brick, Layer.STATIC_OBJECTS);
-		bricksCounter.decrement();
+		if (gameObjects.removeGameObject(brick, Layer.STATIC_OBJECTS)) {
+			bricksCounter.decrement();
+		}
 
 		Renderable puckImage = imageReader.readImage("assets/mockBall.png", true);
 		Sound collisionSound = soundReader.readSound("assets/blop.wav");
 
 		Vector2 brickCenter = brick.getCenter();
-		Vector2 puckSize = new Vector2(15, 15); // assuming normal ball is 20x20
+		Vector2 puckSize = new Vector2(PUCK_PROPOTION_SIZE * Constants.ballDimensions.x(),
+				PUCK_PROPOTION_SIZE * Constants.ballDimensions.y());
 
 		for (int i = 0; i < 2; i++) {
 			GameObject puck = new Puck(brickCenter, puckSize, puckImage, collisionSound,gameObjects);
