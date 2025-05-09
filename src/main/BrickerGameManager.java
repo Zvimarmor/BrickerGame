@@ -87,6 +87,7 @@ public class BrickerGameManager extends GameManager {
 		currentHeartsObjects.clear();
 
 		heartsPanel = new HeartsPanel(imageReader, LIFE_NUM);
+		heartsPanel.setTag("Heart Panel");
 		gameObjects().addGameObject(heartsPanel, Layer.UI);
 		currentHeartsObjects.add(heartsPanel);
 
@@ -106,6 +107,7 @@ public class BrickerGameManager extends GameManager {
 				windowController.getWindowDimensions(),
 				backgroundImage);
 		background.setCoordinateSpace(CoordinateSpace.CAMERA_COORDINATES);
+		background.setTag("Background");
 		gameObjects().addGameObject(background, Layer.BACKGROUND);
 	}
 
@@ -114,6 +116,7 @@ public class BrickerGameManager extends GameManager {
 		Sound collisionSound = soundReader.readSound("assets/blop.wav");
 		ball = new Ball(new Vector2(0, 0), main.Constants.ballDimensions, ballImage, collisionSound);
 		ball.setCenter(windowDimensions.mult(0.5f));
+		ball.setTag("Ball");
 		gameObjects().addGameObject(ball, Layer.DEFAULT);
 
 		float ballVelX = BALL_SPEED;
@@ -135,6 +138,7 @@ public class BrickerGameManager extends GameManager {
 		paddle.setCenter(new Vector2(
 				windowDimensions.x() / 2,
 				windowDimensions.y() - 30));
+		paddle.setTag("Paddle");
 		gameObjects().addGameObject(paddle, Layer.DEFAULT);
 	}
 
@@ -143,18 +147,21 @@ public class BrickerGameManager extends GameManager {
 				new Vector2(windowDimensions.x() - BORDER_WIDTH, 0),
 				new Vector2(BORDER_WIDTH, windowDimensions.y()),
 				null);
+		rightBoundary.setTag("Boundary");
 		gameObjects().addGameObject(rightBoundary, Layer.STATIC_OBJECTS);
 
 		GameObject leftBoundary = new GameObject(
 				new Vector2(0, 0),
 				new Vector2(BORDER_WIDTH, windowDimensions.y()),
 				null);
+		rightBoundary.setTag("Boundary");
 		gameObjects().addGameObject(leftBoundary, Layer.STATIC_OBJECTS);
 
 		GameObject topBoundary = new GameObject(
 				new Vector2(0, 0),
 				new Vector2(windowDimensions.x(), BORDER_WIDTH),
 				null);
+		rightBoundary.setTag("Boundary");
 		gameObjects().addGameObject(topBoundary, Layer.STATIC_OBJECTS);
 	}
 
@@ -183,6 +190,7 @@ public class BrickerGameManager extends GameManager {
 						brickImage,
 						collisionStrategy
 				);
+				brick.setTag("Brick");
 				gameObjects().addGameObject(brick, Layer.STATIC_OBJECTS);
 			}
 		}

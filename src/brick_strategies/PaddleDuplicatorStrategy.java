@@ -13,6 +13,8 @@ import danogl.collisions.Layer;
 import gameobjects.Paddle;
 import main.Constants;
 
+import java.util.Objects;
+
 /**
  * A collision strategy that spawns a single duplicate paddle when a brick is destroyed.
  * Uses static initialization to supply required external dependencies,
@@ -94,9 +96,10 @@ public class PaddleDuplicatorStrategy implements CollisionStrategy {
 
 		@Override
 		public void onCollisionEnter(GameObject other, Collision collision) {
-			//todo: problem when the new paddle hit the borders-it counts as a hit
 			super.onCollisionEnter(other, collision);
-			hitCount++;
+			if (!(Objects.equals(other.getTag(), "Boundary"))) {
+				hitCount++;
+			}
 			if (hitCount >= MAX_HITS) {
 				gameObjects.removeGameObject(this);
 				isHitPaddle = false;

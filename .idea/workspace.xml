@@ -6,14 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0062196f-76fb-4078-963a-40cf7698a49d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/BrickFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/BrickFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/PaddleDuplicatorStrategy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/PaddleDuplicatorStrategy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/main/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/main/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brick_strategies/BrickFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/brick_strategies/BrickFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/brick_strategies/PaddleDuplicatorStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/brick_strategies/PaddleDuplicatorStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BrickerGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BrickerGameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Constants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
