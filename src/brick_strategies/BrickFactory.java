@@ -38,8 +38,8 @@ public class BrickFactory {
 		switch (roll) {
 			case 0:
 				return new ExtraBallsStrategy(gameObjects, bricksNum, imageReader, soundReader);
-//			case 1:
-//				return new PaddleDuplicatorStrategy(gameObjects, bricksNum,imageReader,userInputListener);
+			case 1:
+				return new PaddleDuplicatorStrategy(gameObjects, bricksNum,imageReader,userInputListener);
 			//          case 2:
 			//              return new TurboModeStrategy(gameObjects, bricksNum);
 			//          case 3:

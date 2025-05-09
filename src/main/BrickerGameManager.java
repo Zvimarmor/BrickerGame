@@ -125,7 +125,7 @@ public class BrickerGameManager extends GameManager {
 	}
 
 	private void createPaddle(ImageReader imageReader, UserInputListener inputListener) {
-		Renderable paddleImage = imageReader.readImage("assets/paddle.png", true);
+		Renderable paddleImage = imageReader.readImage(Constants.PADDLE_IMAGE_PATH, true);
 		GameObject paddle = new Paddle(
 				new Vector2(0, 0),
 				Constants.paddleDimensions,
@@ -188,12 +188,6 @@ public class BrickerGameManager extends GameManager {
 		}
 	}
 
-	@Override
-	public void update(float delta) {
-		super.update(delta);
-		checkEndGame();
-	}
-
 	public void checkEndGame() {
 		if (BRICKS_NUM.value() == 0 || userInputListener.isKeyPressed(KeyEvent.VK_W)) {
 			if (windowController.openYesNoDialog("You win! Play again?")) {
@@ -216,6 +210,13 @@ public class BrickerGameManager extends GameManager {
 			}
 		}
 	}
+
+	@Override
+	public void update(float delta) {
+		super.update(delta);
+		checkEndGame();
+	}
+
 
 	public static void main(String[] args) {
 		int rowBricksNum = Constants.ROW_BRICKS_NUM;

@@ -20,6 +20,7 @@ import main.Constants;
  */
 public class PaddleDuplicatorStrategy implements CollisionStrategy {
 	private static final int MAX_HITS = Constants.MAX_HITS_PADDLE_DUPLICATOR;
+	public static boolean isHitPaddle = false;
 
 	// Static dependencies, initialized once in constructor
 	private static ImageReader imageReader;
@@ -43,12 +44,13 @@ public class PaddleDuplicatorStrategy implements CollisionStrategy {
 									Counter bricksCounter,
 									ImageReader imageReader,
 									UserInputListener inputListener) {
-		this.gameObjects      = gameObjects;
+		// initialize static dependencies properly
+		this.gameObjects = gameObjects;
 		this.bricksCounter = bricksCounter;
-		this.imageReader      = imageReader;
-		PaddleDuplicatorStrategy.inputListener = inputListener;
-		windowDimensions = Constants.windowDimensions;
-		paddleDimensions = Constants.paddleDimensions;
+		this.imageReader = imageReader;
+		this.inputListener = inputListener;
+		this.windowDimensions = Constants.windowDimensions;
+		this.paddleDimensions = Constants.paddleDimensions;
 	}
 
 	@Override
@@ -57,7 +59,9 @@ public class PaddleDuplicatorStrategy implements CollisionStrategy {
 			bricksCounter.decrement();
 		}
 
-		if (duplicatePaddle != null) return;
+		if (isHitPaddle){
+			return;
+		}
 
 		// create duplicate paddle at center X, half Y
 		Renderable paddleImg = imageReader.readImage(Constants.PADDLE_IMAGE_PATH, true);
@@ -72,6 +76,7 @@ public class PaddleDuplicatorStrategy implements CollisionStrategy {
 				inputListener
 		);
 		gameObjects.addGameObject(duplicatePaddle, Layer.DEFAULT);
+		isHitPaddle = true;
 	}
 
 	/**
@@ -89,9 +94,12 @@ public class PaddleDuplicatorStrategy implements CollisionStrategy {
 
 		@Override
 		public void onCollisionEnter(GameObject other, Collision collision) {
+			//todo: problem when the new paddle hit the borders-it counts as a hit
 			super.onCollisionEnter(other, collision);
-			if (++hitCount >= MAX_HITS) {
+			hitCount++;
+			if (hitCount >= MAX_HITS) {
 				gameObjects.removeGameObject(this);
+				isHitPaddle = false;
 			}
 		}
 	}
