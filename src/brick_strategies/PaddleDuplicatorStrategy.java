@@ -95,11 +95,15 @@ public class PaddleDuplicatorStrategy implements CollisionStrategy {
 		}
 
 		@Override
+		public boolean shouldCollideWith(GameObject other) {
+			return "Main_Ball".equals(other.getTag()) || "Mini_Ball".equals(other.getTag());
+		}
+
+		@Override
 		public void onCollisionEnter(GameObject other, Collision collision) {
 			super.onCollisionEnter(other, collision);
-			if (!(Objects.equals(other.getTag(), "Boundary"))) {
-				hitCount++;
-			}
+			hitCount++;
+
 			if (hitCount >= MAX_HITS) {
 				gameObjects.removeGameObject(this);
 				isHitPaddle = false;

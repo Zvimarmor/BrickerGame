@@ -8,16 +8,13 @@ import danogl.collisions.Layer;
 import danogl.components.CoordinateSpace;
 import danogl.gui.*;
 import danogl.gui.rendering.Renderable;
-import danogl.gui.rendering.TextRenderable;
 import danogl.util.Vector2;
 import danogl.util.Counter;
 import gameobjects.*;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import main.Constants;
 
 /**
  * Main class that manages the Bricker game.
@@ -28,7 +25,8 @@ public class BrickerGameManager extends GameManager {
 	private final int BORDER_WIDTH   = Constants.BORDER_WIDTH;
 	private final float BALL_SPEED   = Constants.BALL_SPEED;
 	private final int MAX_LIFE_NUM   = Constants.MAX_LIFE_NUM;
-	private int LIFE_NUM             = Constants.LIFE_NUM;
+	private int CUR_LIFE_NUM = Constants.CUR_LIFE_NUM;
+	private int IN_LIFE_NUM = Constants.IN_LIFE_NUM;
 
 	// Brick grid dimensions
 	private int rowBricksNum;
@@ -43,7 +41,7 @@ public class BrickerGameManager extends GameManager {
 
 	// Game objects
 	private Ball ball;
-	private List<GameObject> currentHeartsObjects = new ArrayList<>();
+	private GameObject[] currentHeartsObjects = new GameObject[0];
 	private HeartsPanel heartsPanel;
 	private Counter BRICKS_NUM;
 
@@ -81,23 +79,8 @@ public class BrickerGameManager extends GameManager {
 	}
 
 	private void createHeartsPanel() {
-		for (GameObject obj : currentHeartsObjects) {
-			gameObjects().removeGameObject(obj, Layer.UI);
-		}
-		currentHeartsObjects.clear();
-
-		heartsPanel = new HeartsPanel(imageReader, LIFE_NUM);
+		heartsPanel = new HeartsPanel(imageReader, IN_LIFE_NUM,gameObjects());
 		heartsPanel.setTag("Heart Panel");
-		gameObjects().addGameObject(heartsPanel, Layer.UI);
-		currentHeartsObjects.add(heartsPanel);
-
-		gameObjects().addGameObject(heartsPanel.getTextObject(), Layer.UI);
-		currentHeartsObjects.add(heartsPanel.getTextObject());
-
-		for (GameObject heart : heartsPanel.getHeartObjects()) {
-			gameObjects().addGameObject(heart, Layer.UI);
-			currentHeartsObjects.add(heart);
-		}
 	}
 
 	private void createBackground(ImageReader imageReader, WindowController windowController) {
@@ -116,7 +99,7 @@ public class BrickerGameManager extends GameManager {
 		Sound collisionSound = soundReader.readSound("assets/blop.wav");
 		ball = new Ball(new Vector2(0, 0), main.Constants.ballDimensions, ballImage, collisionSound);
 		ball.setCenter(windowDimensions.mult(0.5f));
-		ball.setTag("Ball");
+		ball.setTag("Main_Ball");
 		gameObjects().addGameObject(ball, Layer.DEFAULT);
 
 		float ballVelX = BALL_SPEED;
@@ -138,7 +121,7 @@ public class BrickerGameManager extends GameManager {
 		paddle.setCenter(new Vector2(
 				windowDimensions.x() / 2,
 				windowDimensions.y() - 30));
-		paddle.setTag("Paddle");
+		paddle.setTag("MainPaddle");
 		gameObjects().addGameObject(paddle, Layer.DEFAULT);
 	}
 
@@ -172,7 +155,7 @@ public class BrickerGameManager extends GameManager {
 		float brickHeight = Constants.BRICK_HEIGHT;
 		float availableWidth = windowDimensions.x() - 2 * BORDER_WIDTH;
 		float brickWidth     = (availableWidth - (colBricksNum - 1) * spacing) / colBricksNum;
-		BrickFactory factory = new BrickFactory(gameObjects(), BRICKS_NUM, imageReader, soundReader,userInputListener);
+		BrickFactory factory = new BrickFactory(gameObjects(), BRICKS_NUM, imageReader, soundReader,userInputListener, heartsPanel);
 
 		float startX = BORDER_WIDTH;
 		float startY = BORDER_WIDTH;
@@ -199,20 +182,20 @@ public class BrickerGameManager extends GameManager {
 	public void checkEndGame() {
 		if (BRICKS_NUM.value() == 0 || userInputListener.isKeyPressed(KeyEvent.VK_W)) {
 			if (windowController.openYesNoDialog("You win! Play again?")) {
-				LIFE_NUM = MAX_LIFE_NUM;
+				CUR_LIFE_NUM = IN_LIFE_NUM;
 				BRICKS_NUM = new Counter(rowBricksNum * colBricksNum);
 				windowController.resetGame();
+				return;
 			} else windowController.closeWindow();
 		}
 
-		if (ball.getCenter().y() > windowDimensions.y()) {
-			LIFE_NUM--;
-			createHeartsPanel();
-			LIFE_NUM = heartsPanel.getLifeNum();
+		else if (ball.getCenter().y() > windowDimensions.y()) {
+			heartsPanel.removeHeart(gameObjects());
+			CUR_LIFE_NUM = heartsPanel.getLifeNum();
 			createBall(imageReader, soundReader);
-			if (LIFE_NUM == 0) {
+			if (CUR_LIFE_NUM == 0) {
 				if (windowController.openYesNoDialog("You lose! Play again?")) {
-					LIFE_NUM = MAX_LIFE_NUM;
+					CUR_LIFE_NUM = IN_LIFE_NUM;
 					windowController.resetGame();
 				} else windowController.closeWindow();
 			}
@@ -224,7 +207,6 @@ public class BrickerGameManager extends GameManager {
 		super.update(delta);
 		checkEndGame();
 	}
-
 
 	public static void main(String[] args) {
 		int rowBricksNum = Constants.ROW_BRICKS_NUM;

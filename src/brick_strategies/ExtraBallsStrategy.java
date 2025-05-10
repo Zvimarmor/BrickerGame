@@ -48,6 +48,7 @@ public class ExtraBallsStrategy implements CollisionStrategy {
 
 		for (int i = 0; i < 2; i++) {
 			GameObject puck = new Puck(brickCenter, puckSize, puckImage, collisionSound,gameObjects);
+			puck.setTag("Mini_Ball");
 			puck.setVelocity(randomUpperHalfVelocity());
 			gameObjects.addGameObject(puck);
 		}
@@ -56,7 +57,7 @@ public class ExtraBallsStrategy implements CollisionStrategy {
 	private Vector2 randomUpperHalfVelocity() {
 		Random random = new Random();
 		double angle = random.nextDouble() * Math.PI; // [0, PI]
-		float speed = 150;
+		float speed = Constants.MINIS_BALLS_SPEED;
 		float velX = (float)Math.cos(angle) * speed;
 		float velY = (float)Math.sin(angle) * speed;
 		return new Vector2(velX, -Math.abs(velY)); // ensure upward direction

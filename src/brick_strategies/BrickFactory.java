@@ -6,6 +6,7 @@ import danogl.gui.ImageReader;
 import danogl.gui.SoundReader;
 import danogl.gui.UserInputListener;
 import danogl.util.Counter;
+import gameobjects.HeartsPanel;
 import main.Constants;
 
 import java.util.Random;
@@ -17,19 +18,22 @@ public class BrickFactory {
 	private final ImageReader imageReader;
 	private final SoundReader soundReader;
 	public final UserInputListener userInputListener;
+	private HeartsPanel heartsPanel;
 
 
 	public BrickFactory(GameObjectCollection gameObjects,
 						Counter bricksNum,
 						ImageReader imageReader,
 						SoundReader soundReader,
-						UserInputListener userInputListener) {
+						UserInputListener userInputListener,
+						HeartsPanel heartsPanel) {
 		this.rand = new Random();
 		this.gameObjects = gameObjects;
 		this.bricksNum = bricksNum;
 		this.imageReader = imageReader;
 		this.soundReader = soundReader;
 		this.userInputListener = userInputListener;
+		this.heartsPanel=heartsPanel;
 
 	}
 
@@ -40,13 +44,12 @@ public class BrickFactory {
 				return new ExtraBallsStrategy(gameObjects, bricksNum, imageReader, soundReader);
 			case 1:
 				return new PaddleDuplicatorStrategy(gameObjects, bricksNum,imageReader,userInputListener);
-			//          case 2:
-			//              return new TurboModeStrategy(gameObjects, bricksNum);
-			//          case 3:
-			//              return new LifeRestorationStrategy(gameObjects, bricksNum);
-			//          case 4:
-			//              return new DoubleStrategy(new BasicCollisionStrategy(gameObjects, bricksNum));
-
+			          case 2:
+			              return new TurboModeStrategy(gameObjects, bricksNum,imageReader);
+			case 3:
+				return new LifeRestorationStrategy(gameObjects, bricksNum, imageReader,heartsPanel);
+			case 4:
+				return new DoubleStrategy(gameObjects, bricksNum, imageReader, soundReader, userInputListener, heartsPanel);
 			default:
 				return new BasicCollisionStrategy(gameObjects, bricksNum);
 		}
