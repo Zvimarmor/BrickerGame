@@ -1,3 +1,9 @@
+/**
+ * Main class that manages the Bricker game.
+ * Responsible for initializing game objects and game logic.
+ * Includes paddle, ball, hearts panel, bricks, boundaries, and game state logic.
+ * @author Zvi Marmor and Adi zuarets
+ */
 package bricker.main;
 
 import bricker.brick_strategies.BrickFactory;
@@ -20,18 +26,17 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 /**
- * Main class that manages the Bricker game.
- * Responsible for initializing game objects and game logic.
- *
- * <p>Includes paddle, ball, hearts panel, bricks, boundaries, and game state logic.</p>
- *
- * @author
+ * The central game manager class for the Bricker game.
+ * Responsible for initializing and orchestrating all major game components,
+ * including the ball, paddle, bricks, UI panels, and game logic.
+ * Handles game start, updates, win/lose conditions, object placement,
+ * and user interactions. Inherits from danogl.GameManager.
+ * This class serves as the entry point of the game via its main method.
  */
 public class BrickerGameManager extends GameManager {
 	// === Constants ===
 	private final int BORDER_WIDTH = Constants.BORDER_WIDTH;
 	private final float BALL_SPEED = Constants.BALL_SPEED;
-	private final int MAX_LIFE_NUM = Constants.MAX_LIFE_NUM;
 
 	// === Life tracking ===
 	private int CUR_LIFE_NUM = Constants.CUR_LIFE_NUM;
@@ -51,7 +56,6 @@ public class BrickerGameManager extends GameManager {
 
 	// === Game objects ===
 	private Ball ball;
-	private GameObject[] currentHeartsObjects = new GameObject[0];
 	private HeartsPanel heartsPanel;
 	private Counter BRICKS_NUM;
 
@@ -74,6 +78,11 @@ public class BrickerGameManager extends GameManager {
 
 	/**
 	 * Initializes the game window and all game objects.
+	 *
+	 * @param imageReader      Reader for image assets.
+	 * @param soundReader      Reader for sound assets.
+	 * @param inputListener    Listener for user input.
+	 * @param windowController Controller for the game window.
 	 */
 	@Override
 	public void initializeGame(ImageReader imageReader, SoundReader soundReader,
@@ -84,12 +93,12 @@ public class BrickerGameManager extends GameManager {
 		this.windowController = windowController;
 		this.userInputListener = inputListener;
 
-		createBackground();
-		createHeartsPanel();
-		createBall();
-		createPaddle();
-		createBoundaries();
-		createBricks();
+		createBackground();   // set background image
+		createHeartsPanel();  // set up lives UI panel
+		createBall();         // creat main ball
+		createPaddle();       // creat player paddle
+		createBoundaries();   // add invisible walls
+		createBricks();       // creat brick grid
 	}
 
 	/**
@@ -115,7 +124,7 @@ public class BrickerGameManager extends GameManager {
 	}
 
 	/**
-	 * Initializes the bricker.main ball and adds it to the game.
+	 * Initializes the main ball and adds it to the game.
 	 */
 	private void createBall() {
 		Renderable ballImage = imageReader.readImage(Constants.BALL_IMAGE_PATH, true);
@@ -125,6 +134,7 @@ public class BrickerGameManager extends GameManager {
 		ball.setTag(Constants.MAIN_BALL_TAG);
 		gameObjects().addGameObject(ball, Layer.DEFAULT);
 
+		// Randomize initial direction
 		Random rand = new Random();
 		float ballVelX = BALL_SPEED * (rand.nextBoolean() ? -1 : 1);
 		float ballVelY = BALL_SPEED * (rand.nextBoolean() ? -1 : 1);
@@ -193,7 +203,8 @@ public class BrickerGameManager extends GameManager {
 				CollisionStrategy strategy = factory.getStrategy();
 				Vector2 topLeft = new Vector2(
 						BORDER_WIDTH + col * (brickWidth + spacing),
-						BORDER_WIDTH + row * (brickHeight + spacing));
+						BORDER_WIDTH + row * (brickHeight + spacing)
+				);
 				Brick brick = new Brick(topLeft,
 						new Vector2(brickWidth, brickHeight),
 						brickImage,

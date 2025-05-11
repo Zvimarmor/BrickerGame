@@ -15,7 +15,7 @@ public class Ball extends GameObject {
 	private int collisionCounter = 0;
 
 	/**
-	 * Construct a new Ball instance.
+	 * Constructs a new Ball instance with the specified parameters.
 	 *
 	 * @param topLeftCorner  Top-left position of the ball.
 	 * @param dimensions     Size of the ball.
@@ -28,11 +28,20 @@ public class Ball extends GameObject {
 		this.collisionSound = collisionSound;
 	}
 
+	/**
+	 * Called when the ball collides with another object.
+	 * Flips the ball's direction based on the collision,
+	 * increases the number of collisions by one,
+	 * and plays a sound effect.
+	 *
+	 * @param other The GameObject with which a collision occurred.
+	 * @param collision Information regarding this collision.
+	 */
 	@Override
-	public void onCollisionEnter(GameObject other, Collision collision){
+	public void onCollisionEnter(GameObject other, Collision collision) {
 		super.onCollisionEnter(other, collision);
 
-		// Flip velocity based on collision normal
+		// Reverse direction based on collision normal
 		Vector2 newVal = getVelocity().flipped(collision.getNormal());
 		setVelocity(newVal);
 
@@ -41,7 +50,7 @@ public class Ball extends GameObject {
 	}
 
 	/**
-	 * Returns the number of collisions experienced by the ball.
+	 * Returns the number of collisions this ball has experienced.
 	 *
 	 * @return Collision count.
 	 */

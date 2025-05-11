@@ -58,6 +58,13 @@ public class HeartsPanel extends GameObject {
         createHearts(initialLives, game);
     }
 
+    /**
+     * Creates and updates the heart icons based on the current number of lives.
+     * Removes all existing heart icons and creates the given number of new ones.
+     *
+     * @param numberOfHeartsToCreate The number of heart icons to display.
+     * @param game Game object collection to update.
+     */
     private void createHearts(int numberOfHeartsToCreate, GameObjectCollection game) {
         float yCenter = Constants.panelTopLeft.y() + Constants.panelSize.y() / 2f;
         float heartTop = yCenter - heartHeight / 2f;
@@ -82,6 +89,11 @@ public class HeartsPanel extends GameObject {
         updateTextColor();
     }
 
+    /**
+     * Updates the color of the text displaying the number of lives,
+     * based on the number of remaining hearts.
+     * Green = 3+, Yellow = 2, Red = 1.
+     */
     private void updateTextColor() {
         if (heartObjects.size() >= 3)
             textRenderable.setColor(Color.GREEN);
@@ -100,6 +112,8 @@ public class HeartsPanel extends GameObject {
 
     /**
      * Adds one life (if not exceeding max).
+     *
+     * @param game The game's object collection, used to add the new heart to the UI layer.
      */
     public void addHeart(GameObjectCollection game) {
         if (heartObjects.size() >= Constants.MAX_LIFE_NUM) return;
@@ -108,6 +122,8 @@ public class HeartsPanel extends GameObject {
 
     /**
      * Removes one life.
+     *
+     * @param game The game's object collection, used to remove the heart from the UI layer.
      */
     public void removeHeart(GameObjectCollection game) {
         createHearts(heartObjects.size() - 1, game);

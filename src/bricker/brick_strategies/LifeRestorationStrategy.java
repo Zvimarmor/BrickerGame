@@ -1,33 +1,44 @@
 package bricker.brick_strategies;
 
 import danogl.GameObject;
-import danogl.collisions.Collision;
-import danogl.collisions.GameObjectCollection;
 import danogl.collisions.Layer;
+import danogl.collisions.GameObjectCollection;
 import danogl.gui.ImageReader;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
 import danogl.util.Counter;
+import bricker.gameobjects.FallingHeart;
 import bricker.gameobjects.HeartsPanel;
 import bricker.main.Constants;
 
 /**
- * A collision strategy that spawns a falling heart when a brick is destroyed.
- * If the heart is caught by the paddle, an extra life is added (up to the max).
+ * Strategy that create a falling heart when a brick is destroyed.
+ * If the heart collides with the player's paddle, an extra life is added
+ * (provided the number of lives is below the allowed maximum).
+ * This strategy uses the FallingHeart class to define the behavior
+ * of the falling object and updates the obj HeartsPanel when collected.
  */
 public class LifeRestorationStrategy implements CollisionStrategy {
+
+	/** Collection managing all game objects in the scene. */
 	private final GameObjectCollection gameObjects;
+
+	/** Counter tracking the number of remaining bricks. */
 	private final Counter bricksCounter;
+
+	/** Asset loader for reading heart image. */
 	private final ImageReader imageReader;
+
+	/** Reference to the heart panel responsible for managing life display. */
 	private final HeartsPanel heartsPanel;
 
 	/**
-	 * Constructs a LifeRestorationStrategy.
+	 * Constructs the LifeRestorationStrategy.
 	 *
-	 * @param gameObjects   Game object collection to manipulate.
-	 * @param bricksCounter Counter for remaining bricks.
-	 * @param imageReader   Used to read the heart image.
-	 * @param heartsPanel   Panel to manage life display and values.
+	 * @param gameObjects   GameObjectCollection for adding/removing game elements.
+	 * @param bricksCounter Counter used to track remaining bricks.
+	 * @param imageReader   Used to load the heart image asset.
+	 * @param heartsPanel   HeartsPanel that manages player lives UI and logic.
 	 */
 	public LifeRestorationStrategy(GameObjectCollection gameObjects,
 								   Counter bricksCounter,
@@ -39,50 +50,27 @@ public class LifeRestorationStrategy implements CollisionStrategy {
 		this.heartsPanel = heartsPanel;
 	}
 
+	/**
+	 * Called when a brick using this strategy is hit.
+	 * The method removes the brick, spawns a falling heart
+	 * centered at the brick's position, and registers it in the game.
+	 * @param brick The brick GameObject being collided with.
+	 * @param collider The object that hit the brick (e.g., ball).
+	 */
 	@Override
 	public void onCollision(GameObject brick, GameObject collider) {
-		// Remove the brick and decrement the counter
+		// Remove the brick and update the remaining bricks counter
 		if (gameObjects.removeGameObject(brick, Layer.STATIC_OBJECTS)) {
 			bricksCounter.decrement();
 		}
 
-		// Load the heart image
+		// Create the falling heart with the same dimensions as hearts in the panel
 		Renderable heartImage = imageReader.readImage(Constants.HEART_IMAGE_PATH, true);
 		Vector2 heartSize = new Vector2(Constants.objectWidth, Constants.objectHeight);
-		Vector2 heartPos = brick.getCenter().subtract(heartSize.mult(0.5f));
+		Vector2 heartPos = brick.getCenter().subtract(heartSize.mult(Constants.HeartPosPositionDiscounting));
 
-		// Create the falling heart as an anonymous inner GameObject
-		GameObject fallingHeart = new GameObject(heartPos, heartSize, heartImage) {
-			@Override
-			public boolean shouldCollideWith(GameObject other) {
-				// Only collide with the bricker.main paddle
-				return Constants.MAIN_PADDLE_TAG.equals(other.getTag());
-			}
-
-			@Override
-			public void onCollisionEnter(GameObject other, Collision collision) {
-				if (Constants.MAIN_PADDLE_TAG.equals(other.getTag())) {
-					if (heartsPanel.getLifeNum() < Constants.MAX_LIFE_NUM) {
-						heartsPanel.addHeart(gameObjects);
-					}
-					gameObjects.removeGameObject(this);
-				}
-			}
-
-			@Override
-			public void update(float deltaTime) {
-				super.update(deltaTime);
-				// Move downward
-				setTopLeftCorner(getTopLeftCorner().add(
-						new Vector2(0, Constants.FALLING_HEART_SPEED * deltaTime)));
-				// Remove if out of screen
-				if (getTopLeftCorner().y() > Constants.windowDimensions.y()) {
-					gameObjects.removeGameObject(this);
-				}
-			}
-		};
-
-		fallingHeart.setTag(Constants.FALLING_HEART_TAG);
+		// Spawn a heart that falls and can restore one life upon paddle collision
+		GameObject fallingHeart = new FallingHeart(heartPos, heartImage, gameObjects, heartsPanel);
 		gameObjects.addGameObject(fallingHeart, Layer.DEFAULT);
 	}
 }

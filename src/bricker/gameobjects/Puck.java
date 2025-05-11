@@ -32,6 +32,13 @@ public class Puck extends GameObject {
 		this.gameObjects = gameObjects;
 	}
 
+	/**
+	 * Handles collision logic for the puck.
+	 * Reverses direction upon impact and plays a collision sound.
+	 *
+	 * @param other The GameObject that this puck collided with.
+	 * @param collision Details about the collision.
+	 */
 	@Override
 	public void onCollisionEnter(GameObject other, Collision collision) {
 		super.onCollisionEnter(other, collision);
@@ -39,6 +46,11 @@ public class Puck extends GameObject {
 		collisionSound.play();
 	}
 
+	/**
+	 * Updates the puck's position and removes it from the game if it falls below the screen.
+	 *
+	 * @param deltaTime Time since the last frame.
+	 */
 	@Override
 	public void update(float deltaTime) {
 		super.update(deltaTime);

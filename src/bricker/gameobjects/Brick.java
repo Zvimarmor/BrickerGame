@@ -26,6 +26,13 @@ public class Brick extends GameObject {
 		this.collisionStrategy = collisionStrategy;
 	}
 
+	/**
+	 * Called when the brick collides with another object.
+	 * Delegates the collision handling to the assigned collision strategy.
+	 *
+	 * @param other The GameObject with which a collision occurred.
+	 * @param collision Information regarding this collision.
+	 */
 	@Override
 	public void onCollisionEnter(GameObject other, Collision collision) {
 		collisionStrategy.onCollision(this, other);

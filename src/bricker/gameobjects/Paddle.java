@@ -31,6 +31,12 @@ public class Paddle extends GameObject {
 		this.inputListener = inputListener;
 	}
 
+	/**
+	 * Updates the paddle's velocity based on user input.
+	 * Responds to left/right arrow key presses and ensures the paddle stays within screen bounds.
+	 *
+	 * @param deltaTime Time passed since last frame (to the super implementation).
+	 */
 	@Override
 	public void update(float deltaTime) {
 		super.update(deltaTime);
