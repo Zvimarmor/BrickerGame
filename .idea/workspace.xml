@@ -5,35 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0062196f-76fb-4078-963a-40cf7698a49d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/README" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/BasicCollisionStrategy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/BasicCollisionStrategy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/BrickFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/BrickFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/DoubleStrategy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/DoubleStrategy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/ExtraBallsStrategy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/ExtraBallsStrategy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/LifeRestorationStrategy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/LifeRestorationStrategy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/PaddleDuplicatorStrategy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/PaddleDuplicatorStrategy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/TurboModeStrategy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/brick_strategies/TurboModeStrategy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/gameobjects/Ball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/gameobjects/Ball.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/gameobjects/Brick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/gameobjects/Brick.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/gameobjects/HeartsPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/gameobjects/HeartsPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/gameobjects/Paddle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/gameobjects/Paddle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/main/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/main/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brick_strategies/BasicCollisionStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/brick_strategies/BasicCollisionStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brick_strategies/BrickFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/brick_strategies/BrickFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brick_strategies/CollisionStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/brick_strategies/CollisionStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brick_strategies/DoubleStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/brick_strategies/DoubleStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brick_strategies/ExtraBallsStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/brick_strategies/ExtraBallsStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brick_strategies/LifeRestorationStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/brick_strategies/LifeRestorationStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brick_strategies/PaddleDuplicatorStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/brick_strategies/PaddleDuplicatorStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brick_strategies/TurboModeStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/brick_strategies/TurboModeStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameobjects/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameobjects/Ball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameobjects/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameobjects/Brick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameobjects/HeartsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameobjects/HeartsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameobjects/Paddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameobjects/Paddle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameobjects/Puck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameobjects/Puck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BrickerGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BrickerGameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ex2_oop.zip" beforeDir="false" afterPath="$PROJECT_DIR$/ex2_oop.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/BasicCollisionStrategy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/BrickFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/CollisionStrategy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/DoubleStrategy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/ExtraBallsStrategy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/LifeRestorationStrategy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/PaddleDuplicatorStrategy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/brick_strategies/TurboModeStrategy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/gameobjects/Ball.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/gameobjects/Brick.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/gameobjects/HeartsPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/gameobjects/Paddle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/main/BrickerGameManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/main/Constants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/brick_strategies/BasicCollisionStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/brick_strategies/BasicCollisionStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/brick_strategies/BrickFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/brick_strategies/BrickFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/brick_strategies/CollisionStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/brick_strategies/CollisionStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/brick_strategies/DoubleStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/brick_strategies/DoubleStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/brick_strategies/ExtraBallsStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/brick_strategies/ExtraBallsStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/brick_strategies/LifeRestorationStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/brick_strategies/LifeRestorationStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/brick_strategies/PaddleDuplicatorStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/brick_strategies/PaddleDuplicatorStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/brick_strategies/TurboModeStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/brick_strategies/TurboModeStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameobjects/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/gameobjects/Ball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameobjects/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/gameobjects/Brick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameobjects/HeartsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/gameobjects/HeartsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameobjects/Paddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/gameobjects/Paddle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameobjects/Puck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/gameobjects/Puck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BrickerGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/main/BrickerGameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bricker/main/Constants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +79,7 @@
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Application.BouncingBallGameManager.executor": "Run",
-    "Application.BrickerGameManager.executor": "Debug",
+    "Application.BrickerGameManager.executor": "Run",
     "Application.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -104,14 +107,17 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="bricker" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="BrickerGameManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.BrickerGameManager" />
+      <option name="MAIN_CLASS_NAME" value="bricker.main.BrickerGameManager" />
       <module name="project02" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.*" />
+          <option name="PATTERN" value="bricker.main.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
