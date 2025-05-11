@@ -48,8 +48,6 @@ public class LifeRestorationStrategy implements CollisionStrategy {
 
 		// Load the heart image
 		Renderable heartImage = imageReader.readImage(Constants.HEART_IMAGE_PATH, true);
-
-//		Vector2 heartSize = new Vector2(Constants.panelSize.y(), Constants.panelSize.y());
 		Vector2 heartSize = new Vector2(Constants.objectWidth, Constants.objectHeight);
 		Vector2 heartPos = brick.getCenter().subtract(heartSize.mult(0.5f));
 

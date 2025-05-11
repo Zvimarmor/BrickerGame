@@ -12,8 +12,8 @@ import danogl.util.Vector2;
 public class Constants {
 
     /*** Window Settings ***/
-    public static final Vector2 windowDimensions = new Vector2(1000, 700);
-    public static final int WINDOW_HEIGHT = 700;
+    public static final Vector2 windowDimensions = new Vector2(700, 500);
+    public static final int WINDOW_HEIGHT = (int) windowDimensions.y();
     public static final int BORDER_WIDTH = 3;
     public static final String GAME_TITLE = "Bricker Game";
 
