@@ -19,7 +19,7 @@ Bricker features customizable brick collision strategies (extra balls, paddle du
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 src/
@@ -45,7 +45,7 @@ src/
 
 ---
 
-## 🛠 Prerequisites
+## Prerequisites
 
 * **Java 17** or higher
 * **Danogl** library (DanoGameLab.jar)
@@ -54,7 +54,7 @@ src/
 
 ---
 
-## 💻 Build & Run
+## Build & Run
 
 ### Using IntelliJ IDEA
 
