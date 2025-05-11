@@ -8,21 +8,22 @@ import main.Constants;
 
 import java.awt.event.KeyEvent;
 
-
+/**
+ * A player-controlled paddle that moves horizontally based on user input.
+ */
 public class Paddle extends GameObject {
-	private static float MOVEMENT_SPEED = Constants.MOVEMENT_SPEED;
-	private float WINDOW_WIDTH = Constants.windowDimensions.x();
+	private static final float MOVEMENT_SPEED = Constants.MOVEMENT_SPEED;
+	private static final float WINDOW_WIDTH = Constants.windowDimensions.x();
+
 	private UserInputListener inputListener;
 
 	/**
-	 * Construct a new GameObject instance.
+	 * Constructs a Paddle instance.
 	 *
-	 * @param topLeftCorner Position of the object, in window coordinates (pixels).
-	 *                      Note that (0,0) is the top-left corner of the window.
-	 * @param dimensions    Width and height in window coordinates.
-	 * @param renderable    The renderable representing the object. Can be null, in which case
-	 *                      the GameObject will not be rendered.
-	 * @param inputListener Listens to the user keyboard.
+	 * @param topLeftCorner Top-left position.
+	 * @param dimensions    Paddle size.
+	 * @param renderable    Paddle appearance.
+	 * @param inputListener User input source.
 	 */
 	public Paddle(Vector2 topLeftCorner, Vector2 dimensions, Renderable renderable,
 				  UserInputListener inputListener) {
@@ -33,18 +34,16 @@ public class Paddle extends GameObject {
 	@Override
 	public void update(float deltaTime) {
 		super.update(deltaTime);
-		Vector2 movementDir = new Vector2(0,0);
+		Vector2 movementDir = new Vector2(0, 0);
+		float paddleLeft = getTopLeftCorner().x();
+		float paddleRight = paddleLeft + getDimensions().x();
 
-		float paddleLeft = this.getTopLeftCorner().x();
-		float paddleRight = this.getTopLeftCorner().x() + this.getDimensions().x();
-
-		if (inputListener.isKeyPressed(KeyEvent.VK_LEFT) && paddleLeft > 0){
+		if (inputListener.isKeyPressed(KeyEvent.VK_LEFT) && paddleLeft > 0)
 			movementDir = movementDir.add(Vector2.LEFT);
-		}
-		if (inputListener.isKeyPressed(KeyEvent.VK_RIGHT) && paddleRight < WINDOW_WIDTH) {
-			movementDir = movementDir.add(Vector2.RIGHT);
-		}
-		setVelocity(movementDir.mult(MOVEMENT_SPEED));
 
+		if (inputListener.isKeyPressed(KeyEvent.VK_RIGHT) && paddleRight < WINDOW_WIDTH)
+			movementDir = movementDir.add(Vector2.RIGHT);
+
+		setVelocity(movementDir.mult(MOVEMENT_SPEED));
 	}
 }

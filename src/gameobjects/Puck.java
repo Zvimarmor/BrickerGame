@@ -6,14 +6,24 @@ import danogl.collisions.GameObjectCollection;
 import danogl.gui.Sound;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
+import main.Constants;
 
 /**
- * Represents a "Puck" – an additional ball that does not reduce lives if it falls.
+ * A puck behaves like a ball but does not cost a life when falling.
  */
 public class Puck extends GameObject {
 	private final Sound collisionSound;
 	private final GameObjectCollection gameObjects;
 
+	/**
+	 * Constructs a new puck instance.
+	 *
+	 * @param topLeftCorner   Position of the puck.
+	 * @param dimensions      Size of the puck.
+	 * @param renderable      Appearance.
+	 * @param collisionSound  Sound to play on hit.
+	 * @param gameObjects     Reference to game object collection.
+	 */
 	public Puck(Vector2 topLeftCorner, Vector2 dimensions,
 				Renderable renderable, Sound collisionSound,
 				GameObjectCollection gameObjects) {
@@ -33,8 +43,8 @@ public class Puck extends GameObject {
 	public void update(float deltaTime) {
 		super.update(deltaTime);
 
-		// Remove puck from the game if it falls below the window
-		if (getCenter().y() > 700) { // Use actual window height if accessible
+		// Remove puck from game when it falls below window
+		if (getCenter().y() > Constants.WINDOW_HEIGHT) {
 			gameObjects.removeGameObject(this);
 		}
 	}

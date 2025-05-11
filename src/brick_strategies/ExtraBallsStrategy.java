@@ -23,8 +23,10 @@ public class ExtraBallsStrategy implements CollisionStrategy {
 	private final Counter bricksCounter;
 	private final ImageReader imageReader;
 	private final SoundReader soundReader;
-	private final float PUCK_PROPOTION_SIZE = 0.75f;
 
+	/**
+	 * Constructs the extra ball strategy.
+	 */
 	public ExtraBallsStrategy(GameObjectCollection gameObjects, Counter bricksCounter,
 							  ImageReader imageReader, SoundReader soundReader) {
 		this.gameObjects = gameObjects;
@@ -39,27 +41,29 @@ public class ExtraBallsStrategy implements CollisionStrategy {
 			bricksCounter.decrement();
 		}
 
-		Renderable puckImage = imageReader.readImage("assets/mockBall.png", true);
-		Sound collisionSound = soundReader.readSound("assets/blop.wav");
+		Renderable puckImage = imageReader.readImage(Constants.PUCK_IMAGE_PATH, true);
+		Sound collisionSound = soundReader.readSound(Constants.COLLISION_SOUND_PATH);
 
 		Vector2 brickCenter = brick.getCenter();
-		Vector2 puckSize = new Vector2(PUCK_PROPOTION_SIZE * Constants.ballDimensions.x(),
-				PUCK_PROPOTION_SIZE * Constants.ballDimensions.y());
+		Vector2 puckSize = Constants.ballDimensions.mult(Constants.PUCK_PROPORTION_SIZE);
 
 		for (int i = 0; i < 2; i++) {
-			GameObject puck = new Puck(brickCenter, puckSize, puckImage, collisionSound,gameObjects);
-			puck.setTag("Mini_Ball");
+			GameObject puck = new Puck(brickCenter, puckSize, puckImage, collisionSound, gameObjects);
+			puck.setTag(Constants.MINI_BALL_TAG);
 			puck.setVelocity(randomUpperHalfVelocity());
 			gameObjects.addGameObject(puck);
 		}
 	}
 
+	/**
+	 * Generates a velocity pointing upward in a random direction.
+	 */
 	private Vector2 randomUpperHalfVelocity() {
 		Random random = new Random();
-		double angle = random.nextDouble() * Math.PI; // [0, PI]
+		double angle = random.nextDouble() * Math.PI;
 		float speed = Constants.MINIS_BALLS_SPEED;
-		float velX = (float)Math.cos(angle) * speed;
-		float velY = (float)Math.sin(angle) * speed;
-		return new Vector2(velX, -Math.abs(velY)); // ensure upward direction
+		float velX = (float) Math.cos(angle) * speed;
+		float velY = (float) Math.sin(angle) * speed;
+		return new Vector2(velX, -Math.abs(velY));
 	}
 }

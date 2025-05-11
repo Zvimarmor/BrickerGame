@@ -6,17 +6,19 @@ import danogl.collisions.Collision;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
 
+/**
+ * A brick object that executes a collision strategy upon impact.
+ */
 public class Brick extends GameObject {
 	private CollisionStrategy collisionStrategy;
 
 	/**
-	 * Construct a new GameObject instance.
+	 * Construct a new Brick instance.
 	 *
-	 * @param topLeftCorner Position of the object, in window coordinates (pixels).
-	 *                      Note that (0,0) is the top-left corner of the window.
-	 * @param dimensions    Width and height in window coordinates.
-	 * @param renderable    The renderable representing the object. Can be null, in which case
-	 *                      the GameObject will not be rendered.
+	 * @param topLeftCorner      Top-left position of the brick.
+	 * @param dimensions         Size of the brick.
+	 * @param renderable         Visual representation.
+	 * @param collisionStrategy  Strategy to execute on collision.
 	 */
 	public Brick(Vector2 topLeftCorner, Vector2 dimensions, Renderable renderable,
 				 CollisionStrategy collisionStrategy) {

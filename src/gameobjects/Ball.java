@@ -6,19 +6,21 @@ import danogl.gui.Sound;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
 
+/**
+ * A ball object that bounces off other objects and plays a sound on collision.
+ * Keeps track of the number of collisions it experienced.
+ */
 public class Ball extends GameObject {
-
 	private Sound collisionSound;
-	private  int collisionCounter = 0;
+	private int collisionCounter = 0;
 
 	/**
-	 * Construct a new GameObject instance.
+	 * Construct a new Ball instance.
 	 *
-	 * @param topLeftCorner Position of the object, in window coordinates (pixels).
-	 *                      Note that (0,0) is the top-left corner of the window.
-	 * @param dimensions    Width and height in window coordinates.
-	 * @param renderable    The renderable representing the object. Can be null, in which case
-	 *                      the GameObject will not be rendered.
+	 * @param topLeftCorner  Top-left position of the ball.
+	 * @param dimensions     Size of the ball.
+	 * @param renderable     Visual representation.
+	 * @param collisionSound Sound to play on collision.
 	 */
 	public Ball(Vector2 topLeftCorner, Vector2 dimensions,
 				Renderable renderable, Sound collisionSound) {
@@ -28,15 +30,21 @@ public class Ball extends GameObject {
 
 	@Override
 	public void onCollisionEnter(GameObject other, Collision collision){
-		super.onCollisionEnter(other,collision);
+		super.onCollisionEnter(other, collision);
+
+		// Flip velocity based on collision normal
 		Vector2 newVal = getVelocity().flipped(collision.getNormal());
 		setVelocity(newVal);
-		// Add one collision to the counter
-		this.collisionCounter++;
-		// Play sound when collision
+
+		collisionCounter++;
 		collisionSound.play();
 	}
 
+	/**
+	 * Returns the number of collisions experienced by the ball.
+	 *
+	 * @return Collision count.
+	 */
 	public int getCollisionCounter() {
 		return collisionCounter;
 	}
